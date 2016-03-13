@@ -1,0 +1,92 @@
+
+
+<div class="col-md-2"></div>
+
+<div class="col-md-8" >
+
+    <dialog>Registration Successful..</dialog>
+
+    <div>
+        <h1>Information of Registered Users</h1>
+    </div>
+
+    <div class="table-responsive" id="users" >
+        <table class="table table-bordered">
+            <tr>
+                <th>Sr.No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <!--<th>Address</th>-->
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date Of Birth</th>
+                <th>Gender</th>
+            </tr>
+            <tr  ng-repeat="user in userDetail">
+                <td >{{ user.srNo }}</td>
+                <td >{{ user.firstName }}</td>
+                <td >{{ user.lastName }}</td>
+                <!--<th>{{ user.address  }}</th>-->
+                <td >{{ user.email }}</td>
+                <td >{{ user.phone }}</td>
+                <td >{{ user.dateOfBirth }}</td>
+                <td >{{ user.male || user.female }}</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <!--Search Part-->
+    <div>
+        <h1>Search for Registered User</h1>
+    </div>
+
+    <div class="form-group">
+        <label for="searchByFirstName">Search by First Name</label>
+        <input class="form-control" type="text"  id="searchByFirstName" placeholder="Search by First Name"
+               ng-model="fnSearchObject.firstName">
+    </div>
+    <div class="form-group">
+        <label for="searchByLastName">Search by Last Name</label>
+        <input class="form-control" type="text"  id="searchByLastName" placeholder="Search by Last Name"
+               ng-model="lnSearchObject.lastName">
+    </div>
+
+    <!--<div class="form-group">
+        <label for="searchByLastName">Search by First Name</label>
+        <input class="form-control" type="text"  id="searchByLastName" placeholder="Search by Last Name"
+               ng-model="searchObject.lastName">
+    </div>-->
+    <!--<div class="form-group">
+        <label for="searchByLastName">Search by Last Name</label>
+        <input  class="form-control" type="text"  id="searchByLastName" placeholder="Enter Last Name"
+               ng-model="searchObject.lastName">-->
+    <br>
+    <div class="table-responsive" id="searchedUsers">
+        <table class="table table-bordered">
+            <tr>
+                <th>Sr.No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <!--<th>Address</th>-->
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date Of Birth</th>
+                <th>Gender</th>
+            </tr>
+            <tr ng-repeat="user in userDetail | filter : fnSearchObject | filter :lnSearchObject ">
+                <td>{{ user.srNo }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <!--<th>{{ user.address }}</th>-->
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.dateOfBirth }}</td>
+                <td>{{ user.male || user.female }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="col-md-2"></div>
+
+

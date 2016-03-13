@@ -1,0 +1,158 @@
+<div class="col-md-3" xmlns="http://www.w3.org/1999/html"></div>
+
+<div class="col-md-6">
+
+
+    <h1>User Registration - Application</h1>
+
+    <div ng-controller="RegistrationCtrl">
+        <form role="form" id="userRegistrationForm" name="userRegistrationForm" novalidate>
+
+            <!--First Name-->
+            <div class="form-group">
+                <label for="userFirstName">First Name* :</label>
+                <input class="form-control" type="text" id="userFirstName" name="userFirstName" placeholder="First Name"
+                       ng-model="userInfo.firstName" required>
+                <span style="color:red; font-family:arial, sans-serif"
+                      ng-show="userRegistrationForm.userFirstName.$error.required && userRegistrationForm.userFirstName.$dirty
+                        && userRegistrationForm.userFirstName.$touched">required..!</span>
+            </div>
+
+            <!--Last Name-->
+            <div class="form-group">
+                <label for="userLastName">Last Name* :</label>
+                <input class="form-control" type="text" id="userLastName" name="userLastName" placeholder="Last Name"
+                       ng-model="userInfo.lastName" required>
+                <span style="color:red; font-family:arial, sans-serif"
+                      ng-show="userRegistrationForm.userLastName.$error.required && userRegistrationForm.userLastName.$dirty
+                        && userRegistrationForm.userLastName.$touched">required..!</span>
+            </div>
+
+            <!--Address-->
+            <!--<div class='form-group'>
+                <label for="userAddress" class="control-label">Country :</label>
+                &lt;!&ndash;<pre>Model: {{selected | json}}</pre>&ndash;&gt;
+                <input type="text" class="form-control" id="userAddress" name="userAddress" ng-model="userInfo.address"
+                       uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" >
+            </div>-->
+
+            <!--email-->
+            <div class="form-group">
+                <label for="userInputEmail">Email* :</label>
+                <input class="form-control" type="email" id="userInputEmail" name="userEmail" placeholder="abc@xyz.com"
+                       ng-model="userInfo.email" required>
+                <div>
+                    <span class="error" style="color:red; font-family:arial, sans-serif"
+                          ng-show="userRegistrationForm.userEmail.$error.required && userRegistrationForm.userEmail.$dirty">
+                        required..!</span>
+                    <span class="error" style="color:red" ng-show="!userRegistrationForm.userEmail.$error.required &&
+                        userRegistrationForm.userEmail.$error.userEmail && userRegistrationForm.userEmail.$dirty">
+                        invalid email!</span>
+                </div>
+            </div>
+
+            <!--password-->
+            <div class="form-group">
+                <label for="userPassword">Password* :</label>
+                <input class="form-control" type="password" id="userPassword" name="password" placeholder="Password" ng-minlength="6"
+                       ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/" ng-model="userInfo.password" required>
+                <span style="color:red; font-family:arial, sans-serif" ng-show="userRegistrationForm.password.$error.required
+                        && userRegistrationForm.password.$dirty">required..!</span>
+                <span style="color:red; font-family:arial, sans-serif" ng-show="!userRegistrationForm.password.$error.required
+                        && (userRegistrationForm.password.$error.minlength || userRegistrationForm.password.$error.maxlength)
+                         && userRegistrationForm.password.$dirty">Passwords must be between 6 and 20 characters.</span>
+                <span style="color:red; font-family:arial, sans-serif" ng-show="!userRegistrationForm.password.$error.required &&
+                    !userRegistrationForm.password.$error.minlength &&!userRegistrationForm.password.$error.maxlength
+                    && userRegistrationForm.password.$error.pattern && userRegistrationForm.password.$dirty">
+                    Must contain one lower &amp; uppercase letter,and one non-alpha character (a number or a symbol.)</span>
+                <br/>
+                <label for="passwordConfirm">Confirm Password</label>
+                <input class="form-control" type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirm"
+                       ng-model="userInfo.passwordConfirm" validate-password required>
+                <span style="color:red; font-family:arial, sans-serif" class="has-error" ng-show="!userRegistrationForm.passwordConfirm.$error.required &&
+                    userRegistrationForm.passwordConfirm.$error.noMatch && userRegistrationForm.passwordConfirm.$dirty">Passwords don't match.</span>
+                <!--<span style="color:red; font-family:arial, sans-serif" class="msg-error"-->
+                <!--ng-show="userRegistrationForm.userInfo.passwordConfirm.$error.match">-->
+                <!--Passwords don't match.</span>-->
+            </div>
+
+            <!--phone No.-->
+            <div class="form-group">
+                <label for="userPhone">Phone* :</label>
+                <input class="form-control" type="number" name="userPhone" minlength="10" maxlength="10" id="userPhone"
+                       placeholder="Phone No."
+                       ng-pattern="/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/" ng-model="userInfo.phone">
+
+                <div role="alert">
+                        <span style="color:red; font-family:arial, sans-serif" class="error"
+                              ng-show="userRegistrationForm.userPhone.$error.required && userRegistrationForm.userPhone.$error.pattern
+                             && userRegistrationForm.userPhone.$touched">invalid number..!</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="userDOB">Date Of Birth* :</label>
+                <input class="form-control" type="date" name="userDOB" id="userDOB"
+                       placeholder="Date Of Birth" ng-model="userInfo.dateOfBirth" required>
+
+                <div role="alert">
+                    <span style="color:red; font-family:arial, sans-serif" class="error"
+                              ng-show="userRegistrationForm.userDOB.$touched && userRegistrationForm.userDOB.$error.required">
+                        required..!</span>
+                </div>
+            </div>
+            <br/>
+            <div class="radio-male">
+                <label>Gender:</label>
+                <label><input class="btn btn-default" type="radio" name="gender" id="male" value="Male"
+                              ng-model="userInfo.male">Male</label>
+                <label><input class="btn btn-default" type="radio" name="gender" id="female" value="Female"
+                              ng-model="userInfo.female">Female</label>
+            </div>
+            <br>
+            <input type="button" class="create-account" value="Create Account" ng-click="createAccount()" ng-disabled="userRegistrationForm.$invalid"/>
+
+        </form>
+    </div>
+</div>
+</form>
+<div class="col-md-3"></div>
+
+
+<!--Pass done by this-->
+<!--<input class="form-control" type="password" id="userPasswordConfirm"
+    placeholder="Confirm" ng-model="userInfo.passwordConfirm" required>
+<span style="color:red; font-family:arial, sans-serif" ng-show="userInfo.password !== userInfo.passwordConfirm" >Passwords don't match.</span>-->
+
+
+
+<!--<input class="create-account" type="button" value="Create Account" ng-disabled="!(!!userInfo.userFirstName || !!userInfo.userLastName
+            || !!userInfo.userEmail || !!userInfo.password || !!userInfo.passwordConfirm || !!userInfo.userPhone)" ng-click="createAccount()"/>-->
+
+<!--<span style="color:red; font-family:arial, sans-serif"
+                      ng-show="!userRegistrationForm.userPassword.$error.rdequired && userRegistrationForm.userPassword.$error.noMatch
+                           && userRegistrationForm.userPassword.$dirty">Passwords do not match.</span>
+                <span style="color:red; font-family:arial, sans-serif" class="error"
+                          ng-show="userRegistrationForm.userPassword.$touched && userRegistrationForm.userPassword.$invalid">
+                            Too Short.!!(Minimum of 6 characters) Required.!!</span>
+
+<div role="alert">
+     <span style="color:red" class="error" ng-show="userRegistrationForm.userPass.$error && userRegistrationForm.userPass.$untouched.required">
+         Required!</span>
+     <span style="color:red" class="error"
+           ng-show="userRegistrationForm.userPass.$touched && userRegistrationForm.userPass.$invalid">
+         Too Short.</span>
+     <span class="error" ng-show="userRegistrationForm.userPass.$error.required">
+                    Required!</span>
+</div>
+<div class="form-group">
+    <label for="inputPassword" class="control-label">Password</label>
+    <div class="form-group col-sm-6">
+        <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+        <div class="help-block">Minimum of 6 characters</div>
+    </div>
+    <div class="form-group col-sm-6">
+        <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+        <div class="help-block with-errors"></div>
+    </div>
+</div>-->

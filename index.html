@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="userRegistrationApp" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Registration</title>
+
+    <link href=lib/bootstrap.css rel=stylesheet>
+    <link href=lib/bootstrap-theme.css rel=stylesheet>
+    <link href=assets/style/app.css rel=stylesheet>
+
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {height: 450px}
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height:auto;}
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="home">Home</a></li>
+                <li><a ui-sref="register">Register</a></li>
+                <li><a ui-sref="users">Users</a></li>
+                <li><a ui-sref="about">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ui-view ></div>
+</div>
+
+<!--<script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js></script>-->
+<!--<script src="lib\ui-bootstrap-tpls-0.11.2.min.js"></script>-->
+<!--<script src="lib/jquery-1.12.1.js"></script>-->
+<!--<script src="lib/angular.min.js"></script>-->
+
+<script src="lib/jquery.min.js"></script>
+<script src="lib/angular.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+<script src="lib/bootstrap.js"></script>
+<script src="lib/angular-ui-router.js"></script>
+
+<script src="scripts/app/main.js"></script>
+<script src="scripts/app/common/storage-service.js"></script>
+<script src="scripts/app/home/home-ctrl.js"></script>
+<script src="scripts/app/about/about-ctrl.js"></script>
+<script src="scripts/components/directives/pass-valid.js"></script>
+<script src="scripts/app/register/reg-ctrl.js"></script>
+<script src="scripts/app/user-details/user-ctrl.js"></script>
+
+</body>
+</html>
