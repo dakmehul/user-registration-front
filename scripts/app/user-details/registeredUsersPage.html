@@ -1,5 +1,3 @@
-
-
 <div class="col-md-2"></div>
 
 <div class="col-md-8" >
@@ -11,26 +9,37 @@
     </div>
 
     <div class="table-responsive" id="users" >
+
         <table class="table table-bordered">
             <tr>
+                <th></th>
                 <th>Sr.No</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <!--<th>Address</th>-->
+                <th>State</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Date Of Birth</th>
                 <th>Gender</th>
+                <th>Remove</th>
+                <th>Update</th>
             </tr>
             <tr  ng-repeat="user in userDetail">
+                <td><input type="checkbox"/></td>
                 <td >{{ user.srNo }}</td>
                 <td >{{ user.firstName }}</td>
                 <td >{{ user.lastName }}</td>
-                <!--<th>{{ user.address  }}</th>-->
+                <th>{{ user.state }}</th>
                 <td >{{ user.email }}</td>
                 <td >{{ user.phone }}</td>
                 <td >{{ user.dateOfBirth }}</td>
                 <td >{{ user.male || user.female }}</td>
+                <td>
+                    <a ng-href="#" ng-click="delete($index)">Delete</a>
+                </td>
+                <td>
+                    <a ng-href="#" data-target="#userUpdateModal" ng-click="open(user)">Edit</a>
+                </td>
             </tr>
         </table>
     </div>
@@ -43,12 +52,12 @@
     <div class="form-group">
         <label for="searchByFirstName">Search by First Name</label>
         <input class="form-control" type="text"  id="searchByFirstName" placeholder="Search by First Name"
-               ng-model="fnSearchObject.firstName">
+               ng-model="fNameSearchObject.firstName">
     </div>
     <div class="form-group">
         <label for="searchByLastName">Search by Last Name</label>
         <input class="form-control" type="text"  id="searchByLastName" placeholder="Search by Last Name"
-               ng-model="lnSearchObject.lastName">
+               ng-model="lNameSearchObject.lastName">
     </div>
 
     <!--<div class="form-group">
@@ -67,17 +76,17 @@
                 <th>Sr.No</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <!--<th>Address</th>-->
+                <th>State</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Date Of Birth</th>
                 <th>Gender</th>
             </tr>
-            <tr ng-repeat="user in userDetail | filter : fnSearchObject | filter :lnSearchObject ">
+            <tr ng-repeat="user in userDetail | filter : fNameSearchObject | filter :lNameSearchObject ">
                 <td>{{ user.srNo }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <!--<th>{{ user.address }}</th>-->
+                <th>{{ user.state }}</th>
                 <td>{{ user.email }}</td>
                 <td>{{ user.phone }}</td>
                 <td>{{ user.dateOfBirth }}</td>
